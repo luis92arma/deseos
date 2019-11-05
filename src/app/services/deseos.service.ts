@@ -10,6 +10,10 @@ export class DeseosService {
 
   constructor() {
     console.log('service started...')
+    const Lista1 = new Lista('Recolectar piedras del infinito')
+    const Lista2 = new Lista('Heroes a desaparecer')
+
+    this.listas.push(Lista1, Lista2)
   }
 
 
