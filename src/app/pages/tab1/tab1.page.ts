@@ -23,9 +23,29 @@ export class Tab1Page {
     //this.router.navigateByUrl('/tabs/tab1/agregar')
     const alert = await this.alertCtrl.create({
       header: 'Alert',
-      subHeader: 'Subtitolo',
-      message: 'Soy una alerta prro',
-      buttons: ['OK']
+      inputs: [{
+        name: 'titulo',
+        type: 'text',
+        placeholder: 'Nombre de la lista'
+      }],
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancelar')
+        }
+      },
+      {
+        text: 'Crear',
+        handler: ( data ) => {
+          console.log(data)
+          if (data.titulo.length === 0 ) {
+              return
+          }
+          const listId = this.deseosService.crearLista(data.titulo);
+          this.router.navigateByUrl(`/tabs/tab1/agregar/${listId}`)
+        }
+      }]
     });
 
     alert.present();
